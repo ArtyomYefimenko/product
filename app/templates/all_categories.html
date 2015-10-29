@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Список категорий{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+            <h3 class="text-center text-info">Список категорий товаров</h3>
+            <div class="row"></div>
+            <div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">№ п/п</th>
+                                <th class="text-center">Название</th>
+                                <th class="text-center">Slug</th>
+                                <th class="col-md-6 text-center">Описание</th>
+                                <th class="col-md-2 text-center">Кол-во продуктов в категории</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in categories %}
+                            <tr>
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td class="text-center"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></td>
+                                <td class="text-center"><a href="{{ category.get_absolute_url }}">{{ category.slug }}</a></td>
+                                <td class="col-md-2 text-center"><a href="{{ category.get_absolute_url }}">{{ category.description|safe }}</a></td>
+                                <td class="text-center">{{ category.category_products.count }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+				<div class="col-md-1"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+{% endblock %}
+

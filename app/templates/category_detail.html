@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }}{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-info">
+                Категория "{{ category.name }}"
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-1"></div>
+		<div class="col-md-10 center-block">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">№ п/п</th>
+                                <th class="text-center">Название</th>
+                                <th class="text-center">Описание</th>
+                                <th class="text-center">Цена</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in object_list %}
+                            <tr>
+                                <td class="text-center">{{ forloop.counter }}</td>
+                                <td class="text-center"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                                <td class="col-md-6">{{ product.description|safe }}</td>
+                                <td class="text-center">{{ product.price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+Django==1.8.5
+argparse==1.2.1
+django-flat-theme==1.1.1
+django-imperavi==0.2.3
+psycopg2==2.6.1
+sorl-thumbnail==12.3
+wsgiref==0.1.2

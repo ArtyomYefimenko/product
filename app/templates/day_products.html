@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Продукты за 24 часа{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center text-info">
+                Продукты за последние 24 часа
+			</h3>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-1"></div>
+		<div class="col-md-10 center-block">
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center">№ п/п</th>
+                    <th class="text-center">Название</th>
+                    <th class="col-md-5 text-center">Описание</th>
+                    <th class="text-center">Цена</th>
+                    <th class="text-center">В категории</th>
+                    <th class="text-center">Дата добавления</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in object_list %}
+                    <tr>
+                        <td class="text-center">{{ forloop.counter }}</td>
+                        <td class="text-center"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+                        <td>{{ product.description|safe }}</td>
+                        <td class="text-center">{{ product.price }}</td>
+                        <td class="text-center"><a href="{{ product.category.get_absolute_url }}">{{ product.category.name }}</a></td>
+                        <td class="text-center">{{ product.created_at|date:"d.m.Y" }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+	</div>
+</div>
+{% endblock %}
