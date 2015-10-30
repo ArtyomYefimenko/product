@@ -1,4 +1,3 @@
-app/media/cache
 app/static
 app/.idea
 .env

@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from app.views import CategoryListView, CategoryDetailView, ProductDetailView, Product24ListView
+from django.views.generic import TemplateView
 from django.contrib.auth.views import logout, login
 from settings import DEBUG, MEDIA_ROOT
 
@@ -9,6 +10,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^imperavi/', include('imperavi.urls')),
+    url(r'^$', TemplateView.as_view(template_name='base.html'), name='home'),
     url(r'^products/$', CategoryListView.as_view(), name='products'),
     url(r'^products/24h/$', Product24ListView.as_view(), name='day_products'),
     url(r'^products/(?P<category_slug>\w+)/$', CategoryDetailView.as_view(), name='category_detail'),
