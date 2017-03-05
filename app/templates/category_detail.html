@@ -24,11 +24,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for product in object_list %}
+                            {% for product in category.category_products.all %}
                             <tr>
                                 <td class="text-center">{{ forloop.counter }}</td>
-                                <td class="text-center"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
-                                <td class="col-md-6">{{ product.description|safe }}</td>
+                                <td class="text-center">
+                                    <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                                        {{ product.name }}
+                                    </a>
+                                </td>
+                                <td class="col-md-6">{{ product.description|safe|truncatechars_html:50}}</td>
                                 <td class="text-center">{{ product.price }}</td>
                             </tr>
                         {% endfor %}

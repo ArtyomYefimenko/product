@@ -25,9 +25,19 @@
                             {% for category in categories %}
                             <tr>
                                 <td class="text-center">{{ forloop.counter }}</td>
-                                <td class="text-center"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></td>
-                                <td class="text-center"><a href="{{ category.get_absolute_url }}">{{ category.slug }}</a></td>
-                                <td class="col-md-2 text-center"><a href="{{ category.get_absolute_url }}">{{ category.description|safe }}</a></td>
+                                <td class="text-left">
+                                    <a href="{% url 'category_detail' category.slug %}">
+                                        {{ category.name }}
+                                    </a>
+                                </td>
+                                <td class="text-left">
+                                    <a href="{% url 'category_detail' category.slug %}">
+                                        {{ category.slug }}
+                                    </a>
+                                </td>
+                                <td class="col-md-2 text-left">
+                                    {{ category.description|safe|truncatechars_html:50 }}
+                                </td>
                                 <td class="text-center">{{ category.category_products.count }}</td>
                             </tr>
                         {% endfor %}

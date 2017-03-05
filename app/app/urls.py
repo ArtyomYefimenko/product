@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from app.views import CategoryListView, CategoryDetailView, ProductDetailView, Product24ListView
-from django.views.generic import TemplateView
 from django.contrib.auth.views import logout, login
+from django.views.generic import TemplateView
+
+from product.views import CategoryListView, CategoryDetailView, ProductDetailView, Product24ListView
 from settings import DEBUG, MEDIA_ROOT
 
 

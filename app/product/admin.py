@@ -4,18 +4,13 @@ __author__ = 'artem'
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from .models import Category, Product
-from imperavi.admin import ImperaviAdmin, ImperaviStackedInlineAdmin
-
-
-class ProductInline(ImperaviStackedInlineAdmin):
-    model = Product
-    extra = 1
+from imperavi.admin import ImperaviAdmin
 
 
 class CategoryAdmin(ImperaviAdmin):
-    inlines = [
-        ProductInline,
-    ]
+    prepopulated_fields = {"slug": ("name", )}
+    search_fields = ("name", "slug")
+    list_display = search_fields
 
 
 class ProductAdmin(ImperaviAdmin):
@@ -27,7 +22,7 @@ class ProductAdmin(ImperaviAdmin):
         'created_at',
         'modified_at',
     ]
-    search_fields = ('name',)
+    search_fields = ('name', 'category__name', 'slug')
     ordering = ('name', 'price', 'created_at', 'modified_at',)
 
 

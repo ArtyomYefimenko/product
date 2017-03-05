@@ -2,7 +2,6 @@
 __author__ = 'artem'
 
 from django.db import models
-from django.utils import timezone
 
 
 class Category(models.Model):
@@ -12,9 +11,6 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return "/products/%s/" % (self.slug)
 
     class Meta:
         verbose_name = u'Категория'
@@ -32,9 +28,6 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
-
-    def get_absolute_url(self):
-        return "/products/%s/%s/" % (self.category.slug, self.slug)
 
     class Meta:
         ordering = ('-created_at',)
