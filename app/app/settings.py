@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'product',
     'imperavi',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -116,3 +117,10 @@ STATICFILES_DIRS = (
 )
 
 IMPERAVI_UPLOAD_PATH = "uploads/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
